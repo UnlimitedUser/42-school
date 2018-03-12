@@ -1,0 +1,3 @@
+<- Vector ----------------------------------------------------------------------
+The Vector implements a lot of vector functionality for math ecuations
+---------------------------------------------------------------------- Vector ->

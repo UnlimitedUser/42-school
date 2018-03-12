@@ -1,0 +1,3 @@
+<- Matrix ----------------------------------------------------------------------
+The matrix class contains everything that is needed to manipulate a matrix.
+---------------------------------------------------------------------- Matrix ->

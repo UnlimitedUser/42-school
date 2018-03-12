@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calc</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<input id="l" type="text">
+<select id="sel">
+	<option>+</option>
+	<option>-</option>
+	<option>*</option>
+	<option>/</option>
+	<option>%</option>
+</select>
+<input id="r" type="text">
+<input id="s" type="submit" value="Try me!">
+<script type="text/javascript">
+	setInterval(function(){ alert("Please, use me..."); }, 30000);
+	document.getElementById('s').addEventListener('click', function ()
+	{
+		var left = parseInt($('#l').val());
+		var right = parseInt($('#r').val());
+		var e = $('#sel').val();
+		if ((e == '/' || e == '%') && right == 0)
+		{
+			alert('It’s over 9000!');
+			console.log('It’s over 9000!');
+		}
+		else if (left < 0 && right < 0)
+			alert('Error :(');
+		else
+		{
+			alert(eval(left + e + right));
+			console.log(eval(left + e + right));
+		}
+	});
+</script>
+</body>
+</html>

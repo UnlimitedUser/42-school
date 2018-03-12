@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title>Day of the 42</title>
+	<link rel="stylesheet" type="text/css" href="scumm.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var i = 1;
+	 		var arr = ['resources/academy.jpg', 'resources/academy_1.jpg', 'resources/academy_2.jpg'];
+ 			$('#Book').click(function(e){
+     			e.preventDefault();
+   				$("#main").attr('src',"resources/librarian.jpg");
+   			});
+ 			$('#Brick').click(function(e){
+     			e.preventDefault();
+   				$("#main").attr('src',"resources/trump-wall-comp.jpg");
+   			});
+ 			$('#Towel').click(function(e){
+     			e.preventDefault();
+   				$("#main").attr('src',"resources/beach.jpg");
+ 			});
+ 			$('#Speak').click(function(e){
+     			e.preventDefault();
+     			$('#buzzer')[0].play();
+ 			});
+ 			$('#Advance').click(function(e){
+ 				e.preventDefault();
+ 				$('#main').animate({opacity: 0}, 200);
+ 				$('#main').attr('src', arr[i]).animate({opacity: 1.0}, 400);
+ 				i++;
+ 				i = i % arr.length;
+ 			});
+ 			$('#loop').draggable();
+ 			$('#submit').click(function (e) {
+ 				e.preventDefault();
+        		$('#green').html('That\'s intersting, now shut up');
+    		});
+	});
+	</script>
+	<meta charset="utf-8">
+</head>
+<body>
+<div id="boxed">
+	<img id="day" src="resources/day_of_the_42.png" title="Day_of_the_42">
+	<a href="http://www.disney.com"><img id="re" src="resources/reload.png" title="Start from the beginning"></a>
+	<a href="http://www.relaischateaux.com"><img id="cross" src="resources/close.gif" title="Disconnect"></a>
+	<img title="Loop" id="loop" src="resources/loupe.png">
+</div>
+<div id="box">
+	<img id="Advance" title="Advance" alt="Advance" src="resources/arrow.png" class="image">
+	<img id="Take" title="Take" alt="Take" src="resources/main.png" class="image">
+	<img id="Look" title="Look" alt="Look" src="resources/oeil.png" class="image" id="a">
+	<img title="Use" alt="Use" src="resources/outil.png" class="image">
+	<img id="Speak" title="Speak" alt="Speak" src="resources/chat-icon.png" class="image">
+	<audio src="resources/vibrate.mp3" id="buzzer"></audio>
+</div>
+<img id="main" src="resources/cluster.jpg" title="Main">
+<div id="left">
+	<img class="limg" title="Book" alt="Book" id="Book" src="resources/book.png">
+	<img class="limg" title="Towel" alt="Towel" id="Towel" src="resources/towel.png">
+	<div class="limg" id="Brick" title="Brick"></div>
+</div>
+<a href="https://www.ikea.com"><div title="ikea" id="ikea"></div></a>
+<a href="https://www.apple.com"><div title="apple" id="apple"></div></a>
+<div id="green">
+	<br>
+	Vous <h2 style="display: inline; font-weight: normal">entrez</h2> alors dans une grande remplie <span style=" text-shadow: 6px 4px 5px red;">ordinateurs</span>..<br>
+	<i>-Bonjour, vous êtes nouveau ici ?</i><br>
+	<input type="text" id="text" name="text" style="width: 300px;">
+	<input type="submit" value="Respondre" id="submit">
+</div>
+</body>
+</html>

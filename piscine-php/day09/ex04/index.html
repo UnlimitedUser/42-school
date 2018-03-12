@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	function checkC()
+	{
+	    $.ajax({
+	        type: "GET",
+	        url: "select.php",
+	        success: function(l)
+	        {
+				if (l != "")
+				{
+		        	var sp = l.split('\n');
+					for (i in sp)
+					{
+						sp[i] = sp[i].split(';')[1];
+						if (sp[i] != "")
+						{
+							console.log(sp[i]);
+							var theParent = $("#ft_list")[0];
+							var theKid = document.createElement("li");
+							theKid.innerHTML = sp[i];
+							theKid.onclick = function()
+							{
+								if (confirm("delete?"))
+								{
+									$.ajax({
+								        type: "GET",
+								        url: "delete.php",
+								        data: {todo: sp[i]},
+								        success: function(e)
+								        {
+											theParent.removeChild(theKid);	
+								        }
+									});
+								}
+							};
+							theParent.appendChild(theKid);
+							theParent.insertBefore(theKid, theParent.firstChild);
+						}
+					}
+				}
+	        }
+		});
+	}
+	function prom()
+	{
+		var text = prompt("todo");
+		if (text != null)
+		{
+			$.ajax({
+	        	type: "GET",
+	       		url: "insert.php",
+	       		data: {todo: text},
+	        	success: function(a)
+	        	{
+					var theParent = $("#ft_list")[0];
+					var theKid = document.createElement("li");
+					theKid.innerHTML = text;
+					theKid.onclick = function()
+					{
+						if (confirm("delete?"))
+						{
+							$.ajax({
+						        type: "GET",
+						        url: "delete.php",
+					       		data: {todo: text},
+						        success: function(e)
+						        {
+									theParent.removeChild(theKid);	
+						        }
+							});
+						}
+					};
+					theParent.appendChild(theKid);
+					theParent.insertBefore(theKid, theParent.firstChild);
+				}
+			});
+		}
+	}
+	</script>
+</head>
+<body onload="checkC()">
+	<div id="ft_list"></div>
+	<input type="submit" name="New" value="New" onclick="prom()">
+</body>
+</html>

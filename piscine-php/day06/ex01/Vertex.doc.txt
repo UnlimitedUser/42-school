@@ -1,0 +1,4 @@
+<- Vertex ----------------------------------------------------------------------
+The Vertex class implements a vertex in a 3d space
+with a color and four coordinates.
+---------------------------------------------------------------------- Vertex ->

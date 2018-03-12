@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+function putCookie()
+{
+	setCookie("list",document.getElementById("ft_list").innerHTML,30);	
+}
+function delCookie(a)
+{
+	setCookie("list","",-1);
+}
+function checkC()
+{
+	var l = getCookie("list");
+
+	if (l != "")
+	{
+		var sp = l.split('<li>');
+		for (i in sp)
+		{
+			sp[i] = sp[i].replace("</li>","");
+			if (sp[i] != "")
+			{
+			console.log(sp[i]);
+			var theParent = document.getElementById("ft_list");
+			var theKid = document.createElement("li");
+			theKid.innerHTML = sp[i];
+			theKid.onclick = function()
+		{
+
+		if (confirm("delete?")) { theParent.removeChild(this); }putCookie(); }
+		
+			theParent.appendChild(theKid);
+			theParent.insertBefore(theKid, theParent.firstChild);
+
+		}
+		}
+	//	putCookie();
+		//for (var n = 0; n < )
+	//	var div = document.getElementById("ft_list");
+	//	parts = l.childer;
+
+	//	div.innerHTML = l;
+	}
+}
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+	</script>
+</head>
+<body onload="checkC()">
+	<div id="ft_list">
+		
+	</div>
+	<input type="submit" name="New" value="New" onclick="prom()">
+</body>
+<script type="text/javascript">
+
+ 
+  //  delCookie();
+	function prom()
+	{
+		var text = prompt("todo");
+		if (text != null)
+		{
+		var theParent = document.getElementById("ft_list");
+		var theKid = document.createElement("li");
+		theKid.innerHTML = text;
+		theKid.onclick = function()
+		{
+
+		if (confirm("delete?")) { this.parentNode.removeChild(this); } putCookie();}
+// append theKid to the end of theParent
+		theParent.appendChild(theKid);
+
+// prepend theKid to the beginning of theParent
+		theParent.insertBefore(theKid, theParent.firstChild);
+		}
+		putCookie();
+	}
+</script>
+</html>
